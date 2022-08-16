@@ -10,6 +10,9 @@ class LoginPage2 extends StatefulWidget {
 
 class _LoginPage2State extends State<LoginPage2> {
   GlobalKey formKey = GlobalKey<FormState>();
+  String userName = "";
+  String password = "";
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -29,21 +32,32 @@ class _LoginPage2State extends State<LoginPage2> {
         // center the children vertically; the main axis here is the vertical
         // axis because Columns are vertical (the cross axis would be
         // horizontal).
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          TextField(
+          TextFormField(
             decoration: InputDecoration(
+              labelText: "Usuario:",
               border: OutlineInputBorder(),
               hintText: 'Usuario',
             ),
+            onSaved: (value) {
+              userName = value!;
+            },
           ),
-          TextField(
+          TextFormField(
+            
             decoration: InputDecoration(
+              labelText: "Contraseña:",
               border: OutlineInputBorder(),
               hintText: 'Contraseña',
             ),
           ),
-          ElevatedButton(child: Text("Ingresar"), onPressed: ()=>{})
+          ElevatedButton(child: Text("Ingresar "+userName), onPressed: () => {
+            this.setState(() {
+              
+              userName = "Presion "+formKey.currentWidget.toString();;
+            })
+          })
         ],
       ),
     );
